@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="dev/require.js"></script>
+</head>
+<body>
+    <audio id="beep">
+        <source src="/audio/beep.mp3" type='audio/mpeg; codecs="mp3"'>
+    </audio>
+    <audio id="click">
+        <source src="/audio/click.mp3" type='audio/mpeg; codecs="mp3"'>
+    </audio>
+    
+    <div class="container">
+        <div id="exercise" class="exercise"></div>
+    </div>
+    
+    <script type="text/javascript" src="dev/appular.js"></script>
+    <script type="text/javascript">Appular.apps.exercise('#exercise');</script>
+</body>
+</html>

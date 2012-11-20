@@ -1,0 +1,11 @@
+<% 
+var html = '';
+_.each(toggles, function(toggle, index) {
+    html += '<' + tagName + ' class="toggle ' + className;
+    if(toggle.value === active) {
+        html += ' active';
+    }
+    html += '" data-value="' + toggle.value + '">' + toggle.label + '</' + tagName + '>';
+});
+%>
+<%= html %>

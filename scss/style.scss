@@ -1,0 +1,113 @@
+// Transitions
+@mixin transition($transition) {
+    -webkit-transition: $transition;
+    -moz-transition: $transition;
+    -ms-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+
+body {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+}
+
+h1 {
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+h2 {
+    margin:.5em;
+    font-size: 1.2em;
+}
+
+.container {
+    width: 366px;
+    margin: 0 auto;
+    padding: 2em;
+    border: 1px solid #E9E9E9;
+    border-radius: .5em;
+}
+
+.exercise {
+    width: 366px;
+
+    .controls {}
+
+    .top {
+        display: inline-block;
+        text-align: center;
+        width: 20%;
+        background: #F6F6F6;
+        margin: 0 -1px;
+        border: 1px solid #DEDEDE;
+        line-height: 2.5em;
+        font-weight: bold;
+        position: relative;
+
+        &:first-child {
+            border-radius: .3em 0 0 0;
+        }
+
+        &:last-child {
+            
+        }
+
+        h6 {
+            line-height: 1em;
+            margin: 0;
+            color: gray;
+            font-weight: normal;
+            position: absolute;
+            top: 2px;
+            left: 6px;
+        }
+    }
+
+    .start-stop {
+        cursor: pointer;
+        border-radius: 0 .3em 0 0;
+        background: #49AFCD;
+        color: white;
+        @include transition(all .3s ease);
+
+        &:hover {
+            background: darken(#49AFCD, 10%);
+        }
+    }
+
+    .visual {
+        display: block;
+        position: absolute;
+        background: silver;
+        height: .3em;
+        bottom: 0;
+        width: 100%;
+
+        .progress {
+            height: .3em;
+            background: #49AFCD;
+            width: 0;
+        }
+    }
+
+    .notation {
+        position: relative;
+
+        .marker {
+            display: none;
+            height: 103px;
+            width: 5px;
+            background: #49AFCD;
+            position: absolute;
+            top: 0;
+            left: 22px;
+        }
+
+        img {
+            border: 1px solid #DEDEDE;
+            border-top: 0;
+        }
+    }
+}
