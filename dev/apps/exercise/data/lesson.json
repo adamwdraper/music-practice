@@ -1,0 +1,34 @@
+{
+    title: 'Hands to Feet Excersizes',
+    text: 'something',
+    excersizes: [
+        {
+            title: '1',
+            notes: [
+                'note',
+                'another note'
+            ],
+            tags: [],
+            music: {
+                tempo: 60,
+                beats: 4,
+                notation: []
+            },
+            user: {
+                totalTime: 345,
+                history: [
+                    {
+                        date: '',
+                        tempo: 90,
+                        time: 200
+                    },
+                    {
+                        date: '',
+                        tempo: 90,
+                        time: 145
+                    }
+                ]
+            }
+        }
+    ]
+}
