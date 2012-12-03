@@ -25,6 +25,8 @@ define([
         initialize: function(){
             _.bindAll(this);
 
+            this.on('change:tempo', this.updateTimeoutTime);
+
             this.set({
                 'timeoutTime': Math.round(60000/this.get('tempo')),
                 'currentBeat': this.get('beats')
@@ -50,7 +52,7 @@ define([
         },
         
         updateTimeoutTime: function() {
-            this.set({'timeoutTime': Math.round(60000/this.get('tempo'))});
+            this.set('timeoutTime', Math.round(60000/this.get('tempo')));
         },
         
         play: function() {

@@ -11,7 +11,7 @@ define([
             interval: {}
         },
         
-        initialize: function(){
+        initialize: function () {
             _.bindAll(this);
         },
 
@@ -23,7 +23,7 @@ define([
             }
         },
         
-        start: function() {
+        start: function () {
             this.set({
                 split: 0,
                 isOn: true
@@ -31,12 +31,16 @@ define([
             this.set('interval', setInterval(this.addTime, 1000));
         },
         
-        stop: function() {
+        stop: function () {
             clearInterval(this.get('interval'));
             this.set('isOn', false);
         },
+
+        reset: function () {
+            this.set(this.defaults);
+        },
         
-        addTime: function() {
+        addTime: function () {
             this.set('split', this.get('split') + 1);
             this.set('total', this.get('total') + 1);
         }
