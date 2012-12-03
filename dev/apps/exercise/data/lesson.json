@@ -4,7 +4,7 @@
     "exercises": [
         {
             "id": 1,
-            "title": "32nd notes",
+            "title": "32nds",
             "notes": [
                 "optional note from the author about this exercise",
                 "another note"
@@ -245,6 +245,151 @@
                         "time": 145
                     }
                 ]
+            }
+        },
+        {
+            "id": 2,
+            "title": "Quarters",
+            "notes": [
+                "optional note from the author about this exercise",
+                "another note"
+            ],
+            "tags": [],
+            "tempo": 80,
+            "notation": {
+                "signature": {
+                    "beats": 4,
+                    "value": 4
+                },
+                "notes": [
+                    {
+                        "beam": false,
+                        "staves": [
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "q"
+                            }
+                        ]
+                    },
+                    {
+                        "beam": false,
+                        "staves": [
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "q"
+                            }
+                        ]
+                    },
+                    {
+                        "beam": false,
+                        "staves": [
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "q"
+                            }
+                        ]
+                    },
+                    {
+                        "beam": false,
+                        "staves": [
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "q"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "history": {
+                "total": 100,
+                "sessions": [
+                    {
+                        "date": "",
+                        "tempo": 70,
+                        "time": 100
+                    }
+                ]
+            }
+        },
+        {
+            "id": 3,
+            "title": "16ths",
+            "notes": [
+                "optional note from the author about this exercise",
+                "another note"
+            ],
+            "tags": [],
+            "tempo": 100,
+            "notation": {
+                "signature": {
+                    "beats": 4,
+                    "value": 4
+                },
+                "notes": [
+                    {
+                        "beam": false,
+                        "staves": [
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "h"
+                            }
+                        ]
+                    },
+                    {
+                        "beam": false,
+                        "staves": [
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "q"
+                            }
+                        ]
+                    },
+                    {
+                        "beam": true,
+                        "staves": [
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "16"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "16"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "16"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "16"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "history": {
+                "total": 0,
+                "sessions": []
             }
         }
     ]

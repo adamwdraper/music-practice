@@ -97,45 +97,6 @@ define([
             this.metronomeModelBinder.bind(this.metronome, this.el, metronomeBindings);
 
             this.loadExercise();
-            
-
-
-
-
-
-            // // Create the notes
-            //   var notes5 = [
-            //     // A quarter-note C.
-            //     new Vex.Flow.StaveNote({ keys: ["c/5"], duration: "q" }),
-            //     new Vex.Flow.StaveNote({ keys: ["c/5"], duration: "q" }),
-            //     new Vex.Flow.StaveNote({ keys: ["c/5"], duration: "q" }),
-            //     new Vex.Flow.StaveNote({ keys: ["c/5"], duration: "q" })
-            //   ];
-
-
-
-
-            // // Create the notes
-            //   var notes6 = [
-            //     // A quarter-note C.
-            //     new Vex.Flow.StaveNote({ keys: ["c/5"], duration: "h" }),
-            //     new Vex.Flow.StaveNote({ keys: ["c/5"], duration: "q" }),
-            //   ];
-
-            //   var notes7 = [
-            //     // A quarter-note C.
-            //     new Vex.Flow.StaveNote({ keys: ["c/5"], duration: "16" }),
-            //     new Vex.Flow.StaveNote({ keys: ["c/5"], duration: "16" }),
-            //     new Vex.Flow.StaveNote({ keys: ["c/5"], duration: "16" }),
-            //     new Vex.Flow.StaveNote({ keys: ["c/5"], duration: "16" })
-            //   ];
-
-            // var beam5 = new Vex.Flow.Beam(notes7);
-
-            //   beam5.setContext(ctx3).draw();
-
-
-
 
             return this;
         },
@@ -177,23 +138,24 @@ define([
                 beats: beats,
                 tempo: tempo
             });
-
-            console.log(this.metronome);
-
         },
 
         loadNotes: function () {
             var canvas = $('#notation-canvas')[0],
                 renderer = new Vex.Flow.Renderer(canvas, Vex.Flow.Renderer.Backends.CANVAS),
-                ctx = renderer.getContext(),
-                stave = new Vex.Flow.Stave(10, 0, 580),
+                context = renderer.getContext();
+
+            // reset canvas
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            var stave = new Vex.Flow.Stave(10, 0, 580),
                 beats = this.exercise.get('notation').signature.beats,
                 value = this.exercise.get('notation').signature.value,
                 vexBeams = [],
                 vexNotes = [],
                 allNotes = [];
             
-            stave.addTimeSignature(beats + '/' + value).setContext(ctx).draw();
+            stave.addTimeSignature(beats + '/' + value).setContext(context).draw();
 
             // Create the notes
             // for each notes
@@ -230,11 +192,11 @@ define([
             var formatter = new Vex.Flow.Formatter().joinVoices([voice]).format([voice], 540);
 
             // Render voice
-            voice.draw(ctx, stave);
+            voice.draw(context, stave);
 
             // Render beams
             _.each(vexBeams, function (beam) {
-                beam.setContext(ctx).draw();
+                beam.setContext(context).draw();
             });
         },
 
