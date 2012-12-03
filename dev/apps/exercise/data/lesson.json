@@ -1,33 +1,395 @@
 {
-    title: 'Hands to Feet Excersizes',
-    text: 'something',
-    excersizes: [
+    "title": "Lesson Title",
+    "text": "something",
+    "exercises": [
         {
-            title: '1',
-            notes: [
-                'note',
-                'another note'
+            "id": 1,
+            "title": "32nds",
+            "notes": [
+                "optional note from the author about this exercise",
+                "another note"
             ],
-            tags: [],
-            music: {
-                tempo: 60,
-                beats: 4,
-                notation: []
-            },
-            user: {
-                totalTime: 345,
-                history: [
+            "tags": [],
+            "tempo": 80,
+            "notation": {
+                "signature": {
+                    "beats": 4,
+                    "value": 4
+                },
+                "notes": [
                     {
-                        date: '',
-                        tempo: 90,
-                        time: 200
+                        "beam": true,
+                        "staves": [
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            }
+                        ]
                     },
                     {
-                        date: '',
-                        tempo: 90,
-                        time: 145
+                        "beam": true,
+                        "staves": [
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            }
+                        ]
+                    },
+                    {
+                        "beam": true,
+                        "staves": [
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            }
+                        ]
+                    },
+                    {
+                        "beam": true,
+                        "staves": [
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "32"
+                            }
+                        ]
                     }
                 ]
+            },
+            "history": {
+                "total": 345,
+                "sessions": [
+                    {
+                        "date": "",
+                        "tempo": 70,
+                        "time": 200
+                    },
+                    {
+                        "date": "",
+                        "tempo": 90,
+                        "time": 145
+                    }
+                ]
+            }
+        },
+        {
+            "id": 2,
+            "title": "Quarters",
+            "notes": [
+                "optional note from the author about this exercise",
+                "another note"
+            ],
+            "tags": [],
+            "tempo": 80,
+            "notation": {
+                "signature": {
+                    "beats": 4,
+                    "value": 4
+                },
+                "notes": [
+                    {
+                        "beam": false,
+                        "staves": [
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "q"
+                            }
+                        ]
+                    },
+                    {
+                        "beam": false,
+                        "staves": [
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "q"
+                            }
+                        ]
+                    },
+                    {
+                        "beam": false,
+                        "staves": [
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "q"
+                            }
+                        ]
+                    },
+                    {
+                        "beam": false,
+                        "staves": [
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "q"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "history": {
+                "total": 100,
+                "sessions": [
+                    {
+                        "date": "",
+                        "tempo": 70,
+                        "time": 100
+                    }
+                ]
+            }
+        },
+        {
+            "id": 3,
+            "title": "16ths",
+            "notes": [
+                "optional note from the author about this exercise",
+                "another note"
+            ],
+            "tags": [],
+            "tempo": 100,
+            "notation": {
+                "signature": {
+                    "beats": 4,
+                    "value": 4
+                },
+                "notes": [
+                    {
+                        "beam": false,
+                        "staves": [
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "h"
+                            }
+                        ]
+                    },
+                    {
+                        "beam": false,
+                        "staves": [
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "q"
+                            }
+                        ]
+                    },
+                    {
+                        "beam": true,
+                        "staves": [
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "16"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "16"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "16"
+                            },
+                            {
+                                "keys": [
+                                    "c/5"
+                                ],
+                                "duration": "16"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "history": {
+                "total": 0,
+                "sessions": []
             }
         }
     ]

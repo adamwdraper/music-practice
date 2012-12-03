@@ -1,0 +1,5 @@
+<select>
+<% exercises.each(function (exercise) { %>
+    <option value="<%=exercise.get('id')%>" <%= (selected == exercise.get('id')) ? 'selected="selected"' : '' %>><%= exercise.get('title') %></option>
+<% }); %>
+</select> 
