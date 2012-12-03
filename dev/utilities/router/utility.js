@@ -11,8 +11,8 @@ define([
         settings: {
             hash: {
                 useBang: false,
-                dataSeparator: '&',
-                keyValSeparator: '='
+                dataSeparator: '/',
+                keyValSeparator: ':'
             },
             // where the router will read the initial data from.  options: hash or query
             loadFrom: 'hash'

@@ -5,13 +5,13 @@ define([
     'Data',
     'Router',
     'apps/exercise/views/app'
-], function ($, _, Backbone, DataCollection, Router, AppView) {
+], function ($, _, Backbone, Data, Router, AppView) {
     var App = {
         initialize: function(element) {
-            DataCollection.add([
+            Data.add([
                 // view
                 {
-                    id: 'v',
+                    id: 'exercise',
                     value: 1
                 }
             ]);

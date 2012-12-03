@@ -26,17 +26,25 @@ define([
 
         events: {
             'click #start-stop': 'toggleStates',
-            'change #exercise-select select': 'loadExercise'
+            'change #exercise-select select': 'changeExercise'
         },
 
         initialize: function() {
             _.bindAll(this);
 
+            var self = this;
+
             // Calls render when data collection is finished loading url vars
             Data.on('initialized', this.render, this);
+
+            Data.on('dataChanged', function (id) {
+                if (id === 'exercise') {
+                    self.loadExercise();
+                }
+            });
         },
 
-        render: function(){
+        render: function () {
             var template = _.template(AppTemplate, {});
             $(this.el).html(template);
 
@@ -45,7 +53,8 @@ define([
             ExercisesCollection.add(this.lesson.get('exercises'));
 
             var selectTemplate = _.template(ExerciseSelectTemplate, {
-                exercises: ExercisesCollection
+                exercises: ExercisesCollection,
+                selected: Data.get('exercise').get('value')
             });
             $('#exercise-select').html(selectTemplate);
 
@@ -101,9 +110,12 @@ define([
             return this;
         },
 
-        loadExercise: function (event) {
-            var id = $('#exercise-select select').val();
-            this.exercise = ExercisesCollection.get(id);
+        changeExercise: function (event) {
+            Data.get('exercise').set('value', $('#exercise-select select').val());
+        },
+
+        loadExercise: function () {
+            this.exercise = ExercisesCollection.get(Data.get('exercise').get('value'));
 
             var exerciseInfoTemplate = _.template(ExerciseInfoTemplate, {
                 exercise: this.exercise
@@ -130,7 +142,7 @@ define([
             // set initial tempo if history exists
             if (this.exercise.get('history').sessions.length > 0) {
                 // get last session
-                session = this.exercise.get('history').sessions.pop();
+                session = this.exercise.get('history').sessions[this.exercise.get('history').sessions.length - 1];
                 tempo = session.tempo;
             }
 
