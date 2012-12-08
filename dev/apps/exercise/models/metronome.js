@@ -39,17 +39,10 @@ define([
             if(this.get('isOn')) {
                 // stop metronome
                 this.stop();
-                this.set({
-                    'isOn': false,
-                    'button': 'Start'
-                });
+
             } else {
                 // start metronome
-                this.play();
-                this.set({
-                    'isOn': true,
-                    'button': 'Stop'
-                });
+                this.start();
             }
         },
         
@@ -57,14 +50,25 @@ define([
             this.set('timeoutTime', Math.round(60000/this.get('tempo')));
         },
         
-        play: function() {
+        start: function() {
+            this.set({
+                'isOn': true,
+                'button': 'Stop'
+            });
+
+            this.click();
+
+            this.trigger('started');
+        },
+
+        click: function () {
             var now = (new Date()).getTime(),
                 milliseconds = now - this.get('timestamp');
 
             if (milliseconds >= this.get('timeoutTime')) {
                 console.log(milliseconds);
                 this.set('timestamp', now);
-                this.set('timeout', setTimeout(this.play, this.get('timeoutTime')));
+                this.set('timeout', setTimeout(this.click, this.get('timeoutTime')));
 
                 if(this.get('currentBeat') >= this.get('beats')) {
                     this.set('currentBeat', 1);
@@ -79,7 +83,6 @@ define([
                     this.set('currentBeat', this.get('currentBeat') + 1);
                 }
 
-
                 if(!this.get('isMuted')) {
                     if(this.get('currentBeat') === 1 && this.get('beats') > 1) {
                         this.get('beep').play();
@@ -89,14 +92,15 @@ define([
                 }
             } else {
                 // too short
-                this.timeout = setTimeout(this.play, this.get('timeoutTime') - milliseconds);
+                this.timeout = setTimeout(this.click, this.get('timeoutTime') - milliseconds);
             }
-
         },
         
         stop: function() {
             clearTimeout(this.get('timeout'));
             this.set({
+                isOn: false,
+                button: 'Start',
                 currentBeat: this.get('beats'),
                 currentBar: 1
             });

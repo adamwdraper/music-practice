@@ -145,6 +145,9 @@ define([
         },
 
         changeExercise: function (event) {
+            this.metronome.stop();
+            this.timer.stop();
+
             Data.get('exercise').set('value', $('#exercise-select select').val());
         },
 
@@ -184,6 +187,7 @@ define([
 
             this.metronome.set({
                 beats: beats,
+                currentBeat: beats,
                 tempo: tempo
             });
 
