@@ -20,8 +20,9 @@ define([
     'text!apps/exercise/templates/exercise-select.html',
     'text!apps/exercise/templates/exercise-info.html',
     'text!apps/exercise/templates/exercise-controls.html',
-    'text!apps/exercise/templates/exercise-notation.html'
-], function($, _, Backbone, ModelBinder, Data, Numeral, Lesson, Exercise, Timer, Metronome, ExercisesCollection, InputGrid, LessonJson, AppTemplate, ExerciseSelectTemplate, ExerciseInfoTemplate, ExerciseControlsTemplate, ExerciseNotationTemplate) {
+    'text!apps/exercise/templates/exercise-notation.html',
+    'text!apps/exercise/templates/exercise-notation-canvas.html'
+], function($, _, Backbone, ModelBinder, Data, Numeral, Lesson, Exercise, Timer, Metronome, ExercisesCollection, InputGrid, LessonJson, AppTemplate, ExerciseSelectTemplate, ExerciseInfoTemplate, ExerciseControlsTemplate, ExerciseNotationTemplate, ExerciseNotationCanvasTemplate) {
 
     var AppView = Backbone.View.extend({
 
@@ -192,63 +193,73 @@ define([
         },
 
         loadNotes: function () {
-            var canvas = $('#notation-canvas')[0],
-                renderer = new Vex.Flow.Renderer(canvas, Vex.Flow.Renderer.Backends.CANVAS),
-                context = renderer.getContext();
+            // remove all canvases
+            $('[rel="notation-canvas"]').remove();
 
-            // reset canvas
-            context.clearRect(0, 0, canvas.width, canvas.height);
-
-            var stave = new Vex.Flow.Stave(10, 0, 580),
-                beats = this.exercise.get('notation').signature.beats,
-                value = this.exercise.get('notation').signature.value,
-                vexBeams = [],
-                vexNotes = [],
-                allNotes = [];
-            
-            stave.addTimeSignature(beats + '/' + value).setContext(context).draw();
+            // set number of bars in metronome
+            this.metronome.set('bars', this.exercise.get('notation').bars.length);
 
             // Create the notes
-            // for each notes
-            _.each(this.exercise.get('notation').notes, function (note) {
-                var vexStaves = {
-                    beam: note.beam,
-                    staves: []
-                };
+            // for each bar
+            _.each(this.exercise.get('notation').bars, function (notes, index) {
+                // add new canvas
+                var exerciseNotationCanvasTemplate = _.template(ExerciseNotationCanvasTemplate, {});
+                $('#canvases').append(ExerciseNotationCanvasTemplate);
 
-                _.each(note.staves, function (stave) {
-                    vexStaves.staves.push(new Vex.Flow.StaveNote(stave));
+                var canvas = $('[rel="notation-canvas"]')[index],
+                    renderer = new Vex.Flow.Renderer(canvas, Vex.Flow.Renderer.Backends.CANVAS),
+                    context = renderer.getContext();
+
+                var stave = new Vex.Flow.Stave(10, 0, 580),
+                    beats = this.exercise.get('notation').signature.beats,
+                    value = this.exercise.get('notation').signature.value,
+                    vexBeams = [],
+                    vexNotes = [],
+                    allNotes = [];
+                
+                stave.addTimeSignature(beats + '/' + value).setContext(context).draw();
+
+                // for each note
+                _.each(notes, function (note, i) {
+                    var vexStaves = {
+                        beam: note.beam,
+                        staves: []
+                    };
+
+                    _.each(note.staves, function (stave) {
+                        vexStaves.staves.push(new Vex.Flow.StaveNote(stave));
+                    });
+
+                    vexNotes.push(vexStaves);
+                    allNotes = allNotes.concat(vexStaves.staves);
                 });
 
-                vexNotes.push(vexStaves);
-                allNotes = allNotes.concat(vexStaves.staves);
-            });
+                var voice = new Vex.Flow.Voice({
+                    num_beats: beats,
+                    beat_value: value,
+                    resolution: Vex.Flow.RESOLUTION
+                });
 
-            var voice = new Vex.Flow.Voice({
-                num_beats: beats,
-                beat_value: value,
-                resolution: Vex.Flow.RESOLUTION
-            });
+                _.each(vexNotes, function (note) {
+                    if (note.beam) {
+                        vexBeams.push(new Vex.Flow.Beam(note.staves));
+                    }
+                });
 
-            _.each(vexNotes, function (note) {
-                if (note.beam) {
-                    vexBeams.push(new Vex.Flow.Beam(note.staves));
-                }
-            });
+                // Add notes to voice
+                voice.addTickables(allNotes);
 
-            // Add notes to voice
-            voice.addTickables(allNotes);
+                // Format and justify the notes to 540 pixels
+                var formatter = new Vex.Flow.Formatter().joinVoices([voice]).format([voice], 540);
 
-            // Format and justify the notes to 540 pixels
-            var formatter = new Vex.Flow.Formatter().joinVoices([voice]).format([voice], 540);
+                // Render voice
+                voice.draw(context, stave);
 
-            // Render voice
-            voice.draw(context, stave);
-
-            // Render beams
-            _.each(vexBeams, function (beam) {
-                beam.setContext(context).draw();
-            });
+                // Render beams
+                _.each(vexBeams, function (beam) {
+                    beam.setContext(context).draw();
+                });
+            }, this);
         },
 
         toggleStates: function () {
@@ -257,7 +268,10 @@ define([
         },
 
         animateMarker: function () {
-            $('#marker').stop().css('left', '49px');
+            $('#marker').stop().css({
+                left: '49px',
+                top: $('[rel="notation-canvas"]:first').height() * (this.metronome.get('currentBar') - 1)
+            });
 
             $('#marker').show().animate({
                 'left': '588px'
@@ -265,7 +279,10 @@ define([
         },
 
         stopAnimateMarker: function () {
-            $('#marker').stop().hide().css('left', '49px');
+            $('#marker').stop().hide().css({
+                left: '49px',
+                top: 0
+            });
         }
 
     });

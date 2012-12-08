@@ -1,8 +1,7 @@
 define([
     'Underscore',
     'Backbone',
-    'Numeral',
-    'text!apps/exercise/templates/exercise-notes.html'
+    'Numeral'
 ], function(_, Backbone, Numeral, NotesTemplate) {
     var ExcersiseModel = Backbone.Model.extend({
 
@@ -10,13 +9,6 @@ define([
 
         initialize: function () {
             _.bindAll(this);
-        },
-
-        formattedNotes: function () {
-            var notes = _.template(NotesTemplate, {
-                notes: this.get('notes')
-            });
-            return notes;
         }
 
     });

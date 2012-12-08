@@ -11,6 +11,8 @@ define([
             tempoMin: 20,
             beats: 4,
             currentBeat: 1,
+            bars: 1,
+            currentBar: 1,
             timeoutTime: {},
             isOn: false,
             timeout: {},
@@ -67,9 +69,17 @@ define([
                 if(this.get('currentBeat') >= this.get('beats')) {
                     this.set('currentBeat', 1);
                     this.trigger('firstBeat');
+
+                    if(this.get('currentBar') >= this.get('bars')) {
+                        this.set('currentBar', 1);
+                    } else {
+                        this.set('currentBar', this.get('currentBar') + 1);
+                    }
                 } else {
                     this.set('currentBeat', this.get('currentBeat') + 1);
                 }
+
+
                 if(!this.get('isMuted')) {
                     if(this.get('currentBeat') === 1 && this.get('beats') > 1) {
                         this.get('beep').play();
@@ -86,7 +96,10 @@ define([
         
         stop: function() {
             clearTimeout(this.get('timeout'));
-            this.set('currentBeat', this.get('beats'));
+            this.set({
+                currentBeat: this.get('beats'),
+                currentBar: 1
+            });
             this.trigger('stopped');
         },
 
