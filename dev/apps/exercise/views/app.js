@@ -14,13 +14,14 @@ define([
     'apps/exercise/models/timer',
     'apps/exercise/models/metronome',
     'apps/exercise/collections/exercises',
+    'libraries/jquery/plugins/input-grid',
     'text!apps/exercise/data/lesson.json',
     'text!apps/exercise/templates/app.html',
     'text!apps/exercise/templates/exercise-select.html',
     'text!apps/exercise/templates/exercise-info.html',
     'text!apps/exercise/templates/exercise-controls.html',
     'text!apps/exercise/templates/exercise-notation.html'
-], function($, _, Backbone, ModelBinder, Data, Numeral, Lesson, Exercise, Timer, Metronome, ExercisesCollection, LessonJson, AppTemplate, ExerciseSelectTemplate, ExerciseInfoTemplate, ExerciseControlsTemplate, ExerciseNotationTemplate) {
+], function($, _, Backbone, ModelBinder, Data, Numeral, Lesson, Exercise, Timer, Metronome, ExercisesCollection, InputGrid, LessonJson, AppTemplate, ExerciseSelectTemplate, ExerciseInfoTemplate, ExerciseControlsTemplate, ExerciseNotationTemplate) {
 
     var AppView = Backbone.View.extend({
 
@@ -128,6 +129,8 @@ define([
         },
 
         loadControls: function () {
+            var self = this;
+
             this.timer.reset();
 
             // set initial time if history exists
@@ -149,6 +152,30 @@ define([
             this.metronome.set({
                 beats: beats,
                 tempo: tempo
+            });
+
+            $('#grid').inputGrid({
+                x: {
+                    value: this.metronome.get('tempo'),
+                    min: this.metronome.get('tempoMin'),
+                    max: this.metronome.get('tempoMax')
+                },
+                y: {
+                    value: 1,
+                    min: 1,
+                    max: 1
+                }
+            })
+            .on('change', function() {
+                $('[data-bind="tempo"]').text($(this).inputGrid('value').x);
+                // this.metronome.set('tempo', $(this).inputGrid('value').x);
+                // do something cool with value.x and value.y here
+                // change event triggered anytime the value changes
+            })
+            .on('release', function() {
+                self.metronome.set('tempo', $(this).inputGrid('value').x);
+                // do something cool with value.x and value.y here
+                // release event triggered on mouseup or touchend
             });
         },
 
