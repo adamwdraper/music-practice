@@ -16,219 +16,221 @@
                     "beats": 4,
                     "value": 4
                 },
-                "notes": [
-                    {
-                        "beam": true,
-                        "staves": [
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            }
-                        ]
-                    },
-                    {
-                        "beam": true,
-                        "staves": [
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            }
-                        ]
-                    },
-                    {
-                        "beam": true,
-                        "staves": [
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            }
-                        ]
-                    },
-                    {
-                        "beam": true,
-                        "staves": [
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "32"
-                            }
-                        ]
-                    }
+                "bars": [
+                    [
+                        {
+                            "beam": true,
+                            "staves": [
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                }
+                            ]
+                        },
+                        {
+                            "beam": true,
+                            "staves": [
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                }
+                            ]
+                        },
+                        {
+                            "beam": true,
+                            "staves": [
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                }
+                            ]
+                        },
+                        {
+                            "beam": true,
+                            "staves": [
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "32"
+                                }
+                            ]
+                        }
+                    ]
                 ]
             },
             "history": {
@@ -261,51 +263,53 @@
                     "beats": 4,
                     "value": 4
                 },
-                "notes": [
-                    {
-                        "beam": false,
-                        "staves": [
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "q"
-                            }
-                        ]
-                    },
-                    {
-                        "beam": false,
-                        "staves": [
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "q"
-                            }
-                        ]
-                    },
-                    {
-                        "beam": false,
-                        "staves": [
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "q"
-                            }
-                        ]
-                    },
-                    {
-                        "beam": false,
-                        "staves": [
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "q"
-                            }
-                        ]
-                    }
+                "bars": [
+                    [
+                        {
+                            "beam": false,
+                            "staves": [
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "q"
+                                }
+                            ]
+                        },
+                        {
+                            "beam": false,
+                            "staves": [
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "q"
+                                }
+                            ]
+                        },
+                        {
+                            "beam": false,
+                            "staves": [
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "q"
+                                }
+                            ]
+                        },
+                        {
+                            "beam": false,
+                            "staves": [
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "q"
+                                }
+                            ]
+                        }
+                    ]
                 ]
             },
             "history": {
@@ -333,58 +337,113 @@
                     "beats": 4,
                     "value": 4
                 },
-                "notes": [
-                    {
-                        "beam": false,
-                        "staves": [
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "h"
-                            }
-                        ]
-                    },
-                    {
-                        "beam": false,
-                        "staves": [
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "q"
-                            }
-                        ]
-                    },
-                    {
-                        "beam": true,
-                        "staves": [
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "16"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "16"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "16"
-                            },
-                            {
-                                "keys": [
-                                    "c/5"
-                                ],
-                                "duration": "16"
-                            }
-                        ]
-                    }
+                "bars": [
+                    [
+                        {
+                            "beam": false,
+                            "staves": [
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "h"
+                                }
+                            ]
+                        },
+                        {
+                            "beam": false,
+                            "staves": [
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "q"
+                                }
+                            ]
+                        },
+                        {
+                            "beam": true,
+                            "staves": [
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "16"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "16"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "16"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "16"
+                                }
+                            ]
+                        }
+                    ],
+                    [
+                        {
+                            "beam": false,
+                            "staves": [
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "h"
+                                }
+                            ]
+                        },
+                        {
+                            "beam": false,
+                            "staves": [
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "q"
+                                }
+                            ]
+                        },
+                        {
+                            "beam": true,
+                            "staves": [
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "16"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "16"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "16"
+                                },
+                                {
+                                    "keys": [
+                                        "c/5"
+                                    ],
+                                    "duration": "16"
+                                }
+                            ]
+                        }
+                    ]
                 ]
             },
             "history": {
