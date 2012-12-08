@@ -166,7 +166,9 @@
                     });
                     
                     $(document).on('mouseup touchend', function(e) {
-                        Grid.stopDrag();
+                        if ($(e.target)[0] === $beacon[0]) {
+                            Grid.stopDrag();
+                        }
                     });
                 }
             });

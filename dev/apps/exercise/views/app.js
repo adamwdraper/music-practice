@@ -46,7 +46,9 @@ define([
         },
 
         render: function () {
-            var template = _.template(AppTemplate, {});
+            var self = this,
+                template = _.template(AppTemplate, {});
+            
             $(this.el).html(template);
 
             this.lesson = new Lesson($.parseJSON(LessonJson));
@@ -106,6 +108,36 @@ define([
             this.metronomeModelBinder = new ModelBinder();
             this.metronomeModelBinder.bind(this.metronome, this.el, metronomeBindings);
 
+            $('#grid').inputGrid({
+                x: {
+                    value: this.metronome.get('tempoMin'),
+                    min: this.metronome.get('tempoMin'),
+                    max: this.metronome.get('tempoMax')
+                },
+                y: {
+                    value: 1,
+                    min: 1,
+                    max: 1
+                }
+            })
+            .on('change', function() {
+                $('[data-bind="tempo"]').text($(this).inputGrid('value').x);
+            })
+            .on('release', function() {
+                var wasOn = false;
+
+                if (self.metronome.isOn()) {
+                    wasOn = true;
+                    self.metronome.toggleState();
+                }
+
+                self.metronome.set('tempo', $(this).inputGrid('value').x);
+
+                if (wasOn) {
+                    self.metronome.toggleState();
+                }
+            });
+
             this.loadExercise();
 
             return this;
@@ -154,28 +186,8 @@ define([
                 tempo: tempo
             });
 
-            $('#grid').inputGrid({
-                x: {
-                    value: this.metronome.get('tempo'),
-                    min: this.metronome.get('tempoMin'),
-                    max: this.metronome.get('tempoMax')
-                },
-                y: {
-                    value: 1,
-                    min: 1,
-                    max: 1
-                }
-            })
-            .on('change', function() {
-                $('[data-bind="tempo"]').text($(this).inputGrid('value').x);
-                // this.metronome.set('tempo', $(this).inputGrid('value').x);
-                // do something cool with value.x and value.y here
-                // change event triggered anytime the value changes
-            })
-            .on('release', function() {
-                self.metronome.set('tempo', $(this).inputGrid('value').x);
-                // do something cool with value.x and value.y here
-                // release event triggered on mouseup or touchend
+            $('#grid').inputGrid('set', {
+                x: tempo
             });
         },
 
