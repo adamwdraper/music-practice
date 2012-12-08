@@ -88,6 +88,10 @@ define([
             clearTimeout(this.get('timeout'));
             this.set('currentBeat', this.get('beats'));
             this.trigger('stopped');
+        },
+
+        isOn: function () {
+            return this.get('isOn');
         }
         
     });

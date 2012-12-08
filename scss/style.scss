@@ -7,9 +7,30 @@
     transition: $transition;
 }
 
+@mixin user-select($select) {
+    -webkit-user-select: $select;
+    -moz-user-select: $select;
+    -ms-user-select: $select;
+    -o-user-select: $select;
+    user-select: $select;
+}
+
+// Grays
+// -------------------------
+$black: #000;
+$grayDarkest: #111;
+$grayDarker: #333;
+$grayDark: #666;
+$gray: #999;
+$grayLight: #CCC;
+$grayLighter: #DDD;
+$grayLightest: #EFEFEF;
+$white: #fff;
+
 body {
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-weight: 300;
+    color: $grayDarker;
 }
 
 h1 {
@@ -34,7 +55,49 @@ h2 {
 .exercise {
     width: 600px;
 
-    .controls {}
+    .controls {
+        @include user-select(none);
+
+        .tempo-grid {
+            height: 20px;
+            background: #F0F0F0;
+            border-radius: 0 0 3px 3px;
+            padding: 3px 16px;
+            border: 1px solid #DEDEDE;
+            border-top: none;
+            @include user-select(none);
+        }
+
+        .tempo-label {
+            position: absolute;
+            font-size: .7em;
+            line-height: 20px;
+            color: $grayLight;
+        }
+
+        .grid {
+            height: 20px;
+            @include user-select(none);
+        }
+
+        .beacon {
+            background: $grayDark;
+            width: 30px;
+            height: 20px;
+            border-radius: 3px;
+            cursor: default;
+            @include user-select(none);
+            color: #FFF;
+
+            &:hover {
+                text-decoration: none;
+            }
+
+            &:active {
+                // box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+            }
+        }
+    }
 
     .info {
 
@@ -95,6 +158,11 @@ h2 {
             background: #49AFCD;
             width: 0;
         }
+    }
+
+    .tempo {
+        // border-bottom: 1px solid #F0F0F0;
+        // background: #F0F0F0;
     }
 
     .notation {

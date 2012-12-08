@@ -14,13 +14,14 @@ define([
     'apps/exercise/models/timer',
     'apps/exercise/models/metronome',
     'apps/exercise/collections/exercises',
+    'libraries/jquery/plugins/input-grid',
     'text!apps/exercise/data/lesson.json',
     'text!apps/exercise/templates/app.html',
     'text!apps/exercise/templates/exercise-select.html',
     'text!apps/exercise/templates/exercise-info.html',
     'text!apps/exercise/templates/exercise-controls.html',
     'text!apps/exercise/templates/exercise-notation.html'
-], function($, _, Backbone, ModelBinder, Data, Numeral, Lesson, Exercise, Timer, Metronome, ExercisesCollection, LessonJson, AppTemplate, ExerciseSelectTemplate, ExerciseInfoTemplate, ExerciseControlsTemplate, ExerciseNotationTemplate) {
+], function($, _, Backbone, ModelBinder, Data, Numeral, Lesson, Exercise, Timer, Metronome, ExercisesCollection, InputGrid, LessonJson, AppTemplate, ExerciseSelectTemplate, ExerciseInfoTemplate, ExerciseControlsTemplate, ExerciseNotationTemplate) {
 
     var AppView = Backbone.View.extend({
 
@@ -45,7 +46,9 @@ define([
         },
 
         render: function () {
-            var template = _.template(AppTemplate, {});
+            var self = this,
+                template = _.template(AppTemplate, {});
+            
             $(this.el).html(template);
 
             this.lesson = new Lesson($.parseJSON(LessonJson));
@@ -105,6 +108,36 @@ define([
             this.metronomeModelBinder = new ModelBinder();
             this.metronomeModelBinder.bind(this.metronome, this.el, metronomeBindings);
 
+            $('#grid').inputGrid({
+                x: {
+                    value: this.metronome.get('tempoMin'),
+                    min: this.metronome.get('tempoMin'),
+                    max: this.metronome.get('tempoMax')
+                },
+                y: {
+                    value: 1,
+                    min: 1,
+                    max: 1
+                }
+            })
+            .on('change', function() {
+                $('[data-bind="tempo"]').text($(this).inputGrid('value').x);
+            })
+            .on('release', function() {
+                var wasOn = false;
+
+                if (self.metronome.isOn()) {
+                    wasOn = true;
+                    self.metronome.toggleState();
+                }
+
+                self.metronome.set('tempo', $(this).inputGrid('value').x);
+
+                if (wasOn) {
+                    self.metronome.toggleState();
+                }
+            });
+
             this.loadExercise();
 
             return this;
@@ -128,6 +161,8 @@ define([
         },
 
         loadControls: function () {
+            var self = this;
+
             this.timer.reset();
 
             // set initial time if history exists
@@ -149,6 +184,10 @@ define([
             this.metronome.set({
                 beats: beats,
                 tempo: tempo
+            });
+
+            $('#grid').inputGrid('set', {
+                x: tempo
             });
         },
 
