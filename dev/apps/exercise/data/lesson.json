@@ -260,7 +260,7 @@
             "tempo": 80,
             "notation": {
                 "signature": {
-                    "beats": 4,
+                    "beats": 2,
                     "value": 4
                 },
                 "bars": [
@@ -277,35 +277,19 @@
                             ]
                         },
                         {
-                            "beam": false,
+                            "beam": true,
                             "staves": [
                                 {
                                     "keys": [
                                         "c/5"
                                     ],
-                                    "duration": "q"
-                                }
-                            ]
-                        },
-                        {
-                            "beam": false,
-                            "staves": [
+                                    "duration": "8"
+                                },
                                 {
                                     "keys": [
                                         "c/5"
                                     ],
-                                    "duration": "q"
-                                }
-                            ]
-                        },
-                        {
-                            "beam": false,
-                            "staves": [
-                                {
-                                    "keys": [
-                                        "c/5"
-                                    ],
-                                    "duration": "q"
+                                    "duration": "8"
                                 }
                             ]
                         }
