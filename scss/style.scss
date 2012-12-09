@@ -59,6 +59,7 @@ h2 {
         @include user-select(none);
 
         .tempo-grid {
+            position: relative;
             height: 20px;
             background: #F0F0F0;
             border-radius: 0 0 3px 3px;
@@ -72,7 +73,7 @@ h2 {
             position: absolute;
             font-size: .7em;
             line-height: 20px;
-            color: $grayLight;
+            color: $gray;
         }
 
         .grid {
