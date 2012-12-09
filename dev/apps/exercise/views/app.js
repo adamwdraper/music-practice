@@ -20,11 +20,14 @@ define([
     'text!apps/exercise/templates/exercise-select.html',
     'text!apps/exercise/templates/exercise-info.html',
     'text!apps/exercise/templates/exercise-controls.html',
+    'text!apps/exercise/templates/exercise-tempo-label.html',
     'text!apps/exercise/templates/exercise-notation.html',
     'text!apps/exercise/templates/exercise-notation-canvas.html'
-], function($, _, Backbone, ModelBinder, Data, Numeral, Lesson, Exercise, Timer, Metronome, ExercisesCollection, InputGrid, LessonJson, AppTemplate, ExerciseSelectTemplate, ExerciseInfoTemplate, ExerciseControlsTemplate, ExerciseNotationTemplate, ExerciseNotationCanvasTemplate) {
+], function($, _, Backbone, ModelBinder, Data, Numeral, Lesson, Exercise, Timer, Metronome, ExercisesCollection, InputGrid, LessonJson, AppTemplate, ExerciseSelectTemplate, ExerciseInfoTemplate, ExerciseControlsTemplate, ExerciseTempoLabelTemplate, ExerciseNotationTemplate, ExerciseNotationCanvasTemplate) {
 
     var AppView = Backbone.View.extend({
+
+        NUMBER_TEMPO_LABELS: 8,
 
         events: {
             'click #start-stop': 'toggleStates',
@@ -88,6 +91,18 @@ define([
 
             // create metronome and bindings
             this.metronome = new Metronome();
+
+            // add labels to controls
+            var temposEvery = (this.metronome.get('tempoMax') - this.metronome.get('tempoMin')) / (this.NUMBER_TEMPO_LABELS + 1);
+            for (var i = (this.NUMBER_TEMPO_LABELS); i >= 1; i--) {
+                var tempo = Numeral((temposEvery * i) + this.metronome.get('tempoMin')).format('0'),
+                    left = ((100 / (this.NUMBER_TEMPO_LABELS + 1)) / 100) * i,
+                    exerciseTempoLabelTemplate = _.template(ExerciseTempoLabelTemplate, {
+                        tempo: tempo,
+                        left: Numeral(left).format('0.[00000]%')
+                    });
+                $('#tempo-grid').prepend(exerciseTempoLabelTemplate);
+            }
 
             this.metronome.on('firstBeat', this.animateMarker);
             this.metronome.on('stopped', this.stopAnimateMarker);
