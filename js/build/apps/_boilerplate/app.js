@@ -1,0 +1,1 @@
+define(["jquery","underscore","backbone","data","router","apps/_boilerplate/views/app"],function(e,t,n,r,i,s){var o={initialize:function(e){s.setElement(e),i.initialize()}};return o});

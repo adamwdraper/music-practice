@@ -1,0 +1,11 @@
+<div class="docs-nav list" id="docs-nav">
+    <a class="button flat" data-anchor="type-conventions">Conventions</a>
+    <a class="button flat" data-anchor="type-appular">Appular</a>
+    <% _.each(docsJson, function (value, key, list) { %>
+        <a class="button flat sub" data-anchor="type-<%= key %>"><%= key %></a>
+            <% _.each(list[key], function (value, key, list) { %>
+                <a class="button flat sub-sub" data-anchor="module-<%= key %>"><%= key %></a>
+            <% }); %>            
+    <% }); %>
+    <a class="button flat sub" data-anchor="type-documenting">documenting</a>
+</div>

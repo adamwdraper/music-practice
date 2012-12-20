@@ -6,7 +6,8 @@
 
     <link rel="stylesheet" href="css/style.css">
     <script src="dev/libraries/vex-flow/vex-flow.js"></script>
-    <script src="dev/require.js"></script>
+    <script src="js/dev/libraries/require/require.js"></script>
+    <script src="js/dev/libraries/require/config.js"></script>
 </head>
 <body>
     <audio id="beep">
@@ -17,12 +18,13 @@
     </audio>
     
     <div class="container">
-        <h2>Music Practicer - v.0.0.4</h2>
+        <h2>Music Practicer - v.0.1.0</h2>
         <p>(Currently only tested and working in Google Chrome)</p>
         <div id="exercise" class="exercise"></div>
     </div>
-    
-    <script type="text/javascript" src="dev/appular.js"></script>
-    <script type="text/javascript">Appular.apps.exercise('#exercise');</script>
+
+    <script src="js/dev/libraries/vex-flow/vex-flow.js"></script>    
+    <script src="js/dev/libraries/appular/appular.js"></script>
+    <script type="text/javascript">Appular.initialize('exercise', '#exercise');</script>
 </body>
 </html>

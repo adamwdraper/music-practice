@@ -1,0 +1,1 @@
+define(["jquery","underscore","backbone"],function(e,t,n){var r=n.View.extend({initialize:function(){},report:function(e){var t={message:e}}});return new r});

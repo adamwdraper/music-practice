@@ -1,0 +1,592 @@
+<div class="js-docs">
+    <h2 id="type-conventions">Conventions</h2>
+    <ul >
+        <li>
+            Use ids for selecting items. If multiple items on same page use rel tag attribute as selector
+        </li>
+
+        <li>
+            Multi word vars are always camelcased (headerLink)
+        </li>
+        <li>
+            4 space indents... not tabs
+        </li>
+        <li>
+            Abbreviations are frowned upon :(
+        </li>
+    </ul>
+    <div class="module">
+        <h3>Code Formatting</h3>
+        <pre>
+// function 
+function () {
+    var a = 1,
+        b = 3;
+
+    return a + b;
+}
+        </pre>
+        <pre>
+// if statements 
+if (a == b) {
+    // do something
+} else if (a > b) {
+    // do something
+} else {
+    // do something
+}
+        </pre>
+        <pre>
+// types
+var object = {
+        property: value,
+        method: function () {
+            // do something
+        }
+    },
+    array = [
+        '1',
+        '2',
+        '3'
+    ];
+        </pre>
+        <pre>
+// sending object to function
+foo({
+    property: value
+}, callback);
+        </pre>
+    </div>
+    <h2 id="type-appular">Appular</h2>
+    <p>
+        In-house javascript framework based on Require.js, Backbone.js, Underscore.js, and jQuery
+    </p>
+
+    <!-- appular docs -->
+    <% _.each(docsJson, function (value, key, list) { %>
+        <h2 id="type-<%= key %>"><%= key %></h2>
+        <% _.each(list[key], function (value, key) { %>
+            <div class="module" id="module-<%= key %>">
+                <h3><%= key %>
+                    <% if (value.extends) { %>
+                        <span class="extends"> : <%= value.extends %> :</span>
+                    <% } %>
+                    <% if (value.description) { %>
+                        <span> - <%= value.description %></span>
+                    <% } %>
+                    <% if (value.modified || value.define || value.file) { %>
+                        <span class="h3-row">
+                            <% 
+                            var row = [];
+                            if (value.modified) {
+                                row.push('<span class="modified"><i aria-hidden="true" class="icon-clock"></i> <abbr class="time-ago" title="' + value.modified + '">' + value.modified + '</abbr></span>');
+                            }
+                            if (value.define) {
+                                row.push('<span class="define"><i aria-hidden="true" class="icon-link"></i>  ' + value.define + '</span>');
+                            }
+                            if (value.file) {
+                                row.push('<span class="file"><i aria-hidden="true" class="icon-file"></i>  ' + value.file + '</span>');
+                            } %>
+                            <%= row.join(' | ') %>
+                        </span>
+                    <% } %>
+                </h3>
+                <ul>
+                    <% _.each(value.links, function (link, key) { %>
+                        <li>
+                            <a href="<%= link.url %>" target="_blank"><%= link.description %></a>
+                        </li>
+                    <% }); %>
+                </ul>
+                <div class="methods">
+
+
+                    <!-- doc -->
+                    <% if (value.doc) { %>
+                        <% _.each(value.doc, function (value, key) { %>
+                            <div class="method">
+                                
+                                <% if (key === 'event') { %>
+                                    <% _.each(value, function (value, key) { %>
+                                        <h4>Event: <%= key %>
+                                        <% if (value.description) { %>
+                                            <span>- <%= value.description %></span>
+                                        <% } %>
+                                        </h4>
+                                        <% if (value.param) { %>
+                                            <h5>Params</h5>
+                                            <ul>
+                                                <% _.each(value.param, function (value, key) { %>
+                                                    <li>
+                                                        <%= key %> {<%= value.type %>} 
+                                                        <% if (value.description) { %>
+                                                            - <%= value.description %>
+                                                        <% } %>
+                                                    </li>
+                                                    <% if (value.type === 'object') { %>
+                                                        <ul>
+                                                            <%_.each(value.property, function (value, key) { %>
+                                                                <% var propertyArray = [];
+                                                                if (value.isOptional) { 
+                                                                    propertyArray.push('[' + key + ']');
+                                                                } else {
+                                                                    propertyArray.push(key);
+                                                                } %>
+                                                                <li>
+                                                                    <%= propertyArray.join(', ') %> {<%= value.type %>}
+                                                                    <% if (value.default) { %>
+                                                                        <span class="default-value"> default: <%= value.default %> </span>
+                                                                    <% } %>
+                                                                    <% if (value.description) { %>
+                                                                        - <%= value.description %>
+                                                                    <% } %>
+                                                                </li>
+                                                            <% }); %>
+                                                        </ul>
+                                                        <ul>
+                                                            <% _.each(value.method, function (value, key) { %>
+                                                                <li>
+                                                                    <%= key %> {<%= value.type %>} 
+                                                                    <% if (value.description) { %>
+                                                                        - <%= value.description %>
+                                                                    <% } %>
+                                                                </li>
+                                                            <% }); %>
+                                                        </ul>
+                                                    <% } %>
+                                                <% }); %>
+                                            </ul>
+                                        <% } %>
+                                    <% }); %>
+                                <% } %>
+                                
+                                <% if (value.type === 'function') { %>
+                                    <h4>.<%= key %>
+                                    <% var paramsArray = [];
+                                    _.each(value.param, function (value, key) {
+                                        if (value.isOptional) { 
+                                            paramsArray.push('[' + key + ']');
+                                        } else {
+                                            paramsArray.push(key);
+                                        } 
+                                    }); %>
+                                    (<%= paramsArray.join(', ') %>)
+                                <% } %>
+                                <% if (value.description) { %>
+                                    <span>- <%= value.description %></span>
+                                <% } %>
+                                <% if (value.modified || value.file) { %>
+                                    <span class="h4-row">
+                                        <% 
+                                        var row = [];
+                                        if (value.modified) {
+                                            row.push('<span class="modified"><i aria-hidden="true" class="icon-clock"></i> <abbr class="time-ago" title="' + value.modified + '">' + value.modified + '</abbr></span>');
+                                        }
+                                        if (value.file) {
+                                            row.push('<span class="file"><i aria-hidden="true" class="icon-file"></i>  ' + value.file + '</span>');
+                                        } %>
+                                        <%= row.join(' | ') %>
+                                    </span>
+                                <% } %>
+                                </h4>
+                                <% if (value.param) { %>
+                                    <h5>Params</h5>
+                                    <ul>
+                                        <% _.each(value.param, function (value, key) { %>
+                                            <li>
+                                                <%= key %> {<%= value.type %>} 
+                                                <% if (value.description) { %>
+                                                    - <%= value.description %>
+                                                <% } %>
+                                            </li>
+                                            <% if (value.type === 'object') { %>
+                                                <ul>
+                                                    <%_.each(value.property, function (value, key) { %>
+                                                        <% var propertyArray = [];
+                                                        if (value.isOptional) { 
+                                                            propertyArray.push('[' + key + ']');
+                                                        } else {
+                                                            propertyArray.push(key);
+                                                        } %>
+                                                        <li>
+                                                            <%= propertyArray.join(', ') %> {<%= value.type %>}
+                                                            <% if (value.default) { %>
+                                                                <span class="default-value"> default: <%= value.default %> </span>
+                                                            <% } %>
+                                                            <% if (value.description) { %>
+                                                                - <%= value.description %>
+                                                            <% } %>
+                                                        </li>
+                                                    <% }); %>
+                                                </ul>
+                                                <ul>
+                                                    <% _.each(value.method, function (value, key) { %>
+                                                        <li>
+                                                            <%= key %> {<%= value.type %>} 
+                                                            <% if (value.description) { %>
+                                                                - <%= value.description %>
+                                                            <% } %>
+                                                        </li>
+                                                    <% }); %>
+                                                </ul>
+                                            <% } %>
+                                            <% if (value.type === 'function') { %>
+                                                <h6>Params</h6>
+                                                <ul>
+                                                <% _.each(value.param, function (value, key) {
+                                                    var paramsArray = [];
+                                                    if (value.isOptional) { 
+                                                        paramsArray.push('[' + key + ']');
+                                                    } else {
+                                                        paramsArray.push(key);
+                                                    } %>
+                                                    <li>
+                                                        <%= key %> {<%= value.type %>} 
+                                                        <% if (value.description) { %>
+                                                            - <%= value.description %>
+                                                        <% } %>
+                                                    </li>
+                                                <% }); %>
+                                                </ul>
+                                            <% } %>
+                                        <% }); %>
+                                    </ul>
+                                <% } %>
+                                <% if (value.return) { %>
+                                    <h5>Return</h5>
+                                    <ul>
+                                        <% _.each(value.return, function (value, key) { %>
+                                            <li>
+                                                <%= key %> {<%= value.type %>} 
+                                                <% if (value.description) { %>
+                                                    - <%= value.description %>
+                                                <% } %>
+                                            </li>
+                                        <% }); %>
+                                    </ul>
+                                <% } %>
+                            </div>
+                        <% }); %>
+                    <% } %>
+                    <!-- end doc -->
+
+
+                    <!-- start child -->
+                    <% if (value.child) { %>
+                        <div class="children">
+                        <% _.each(value.child, function (value, key, list) { %>
+                            <h3><%= key %></h3>
+                            <% _.each(list[key], function (value, key) { %>
+                                <div class="child">
+                                    <h3><%= key %>
+                                        <% if (value.extends) { %>
+                                            <span class="extends"> : <%= value.extends %> :</span>
+                                        <% } %>
+                                        <% if (value.description) { %>
+                                            <span> - <%= value.description %></span>
+                                        <% } %>
+                                        <% if (value.modified || value.define || value.file) { %>
+                                            <span class="h3-row">
+                                                <% 
+                                                var row = [];
+                                                if (value.modified) {
+                                                    row.push('<span class="modified"><i aria-hidden="true" class="icon-clock"></i> <abbr class="time-ago" title="' + value.modified + '">' + value.modified + '</abbr></span>');
+                                                }
+                                                if (value.define) {
+                                                    row.push('<span class="define"><i aria-hidden="true" class="icon-link"></i>  ' + value.define + '</span>');
+                                                }
+                                                if (value.file) {
+                                                    row.push('<span class="file"><i aria-hidden="true" class="icon-file"></i>  ' + value.file + '</span>');
+                                                } %>
+                                                <%= row.join(' | ') %>
+                                            </span>
+                                        <% } %>
+                                    </h3>
+                                    <ul>
+                                        <% _.each(value.links, function (link, key) { %>
+                                            <li>
+                                                <a href="<%= link.url %>" target="_blank"><%= link.description %></a>
+                                            </li>
+                                        <% }); %>
+                                    </ul>
+
+
+                                    <!-- doc -->
+                                    <% if (value.doc) { %>
+                                        <% _.each(value.doc, function (value, key) { %>
+                                            <div class="method">
+                                                
+                                                <% if (key === 'event') { %>
+                                                    <% _.each(value, function (value, key) { %>
+                                                        <h4>Event: <%= key %>
+                                                        <% if (value.description) { %>
+                                                            <span>- <%= value.description %></span>
+                                                        <% } %>
+                                                        </h4>
+                                                        <% if (value.param) { %>
+                                                            <h5>Params</h5>
+                                                            <ul>
+                                                                <% _.each(value.param, function (value, key) { %>
+                                                                    <li>
+                                                                        <%= key %> {<%= value.type %>} 
+                                                                        <% if (value.description) { %>
+                                                                            - <%= value.description %>
+                                                                        <% } %>
+                                                                    </li>
+                                                                    <% if (value.type === 'object') { %>
+                                                                        <ul>
+                                                                            <%_.each(value.property, function (value, key) { %>
+                                                                                <% var propertyArray = [];
+                                                                                if (value.isOptional) { 
+                                                                                    propertyArray.push('[' + key + ']');
+                                                                                } else {
+                                                                                    propertyArray.push(key);
+                                                                                } %>
+                                                                                <li>
+                                                                                    <%= propertyArray.join(', ') %> {<%= value.type %>}
+                                                                                    <% if (value.default) { %>
+                                                                                        <span class="default-value"> default: <%= value.default %> </span>
+                                                                                    <% } %>
+                                                                                    <% if (value.description) { %>
+                                                                                        - <%= value.description %>
+                                                                                    <% } %>
+                                                                                </li>
+                                                                            <% }); %>
+                                                                        </ul>
+                                                                        <ul>
+                                                                            <% _.each(value.method, function (value, key) { %>
+                                                                                <li>
+                                                                                    <%= key %> {<%= value.type %>} 
+                                                                                    <% if (value.description) { %>
+                                                                                        - <%= value.description %>
+                                                                                    <% } %>
+                                                                                </li>
+                                                                            <% }); %>
+                                                                        </ul>
+                                                                    <% } %>
+                                                                <% }); %>
+                                                            </ul>
+                                                        <% } %>
+                                                    <% }); %>
+                                                <% } %>
+                                                
+                                                <% if (value.type === 'function') { %>
+                                                    <h4>.<%= key %>
+                                                    <% var paramsArray = [];
+                                                    _.each(value.param, function (value, key) {
+                                                        if (value.isOptional) { 
+                                                            paramsArray.push('[' + key + ']');
+                                                        } else {
+                                                            paramsArray.push(key);
+                                                        } 
+                                                    }); %>
+                                                    (<%= paramsArray.join(', ') %>)
+                                                <% } %>
+                                                <% if (value.description) { %>
+                                                    <span>- <%= value.description %></span>
+                                                <% } %>
+                                                <% if (value.modified || value.file) { %>
+                                                    <span class="h4-row">
+                                                        <% 
+                                                        var row = [];
+                                                        if (value.modified) {
+                                                            row.push('<span class="modified"><i aria-hidden="true" class="icon-clock"></i> <abbr class="time-ago" title="' + value.modified + '">' + value.modified + '</abbr></span>');
+                                                        }
+                                                        if (value.file) {
+                                                            row.push('<span class="file"><i aria-hidden="true" class="icon-file"></i>  ' + value.file + '</span>');
+                                                        } %>
+                                                        <%= row.join(' | ') %>
+                                                    </span>
+                                                <% } %>
+                                                </h4>
+                                                <% if (value.param) { %>
+                                                    <h5>Params</h5>
+                                                    <ul>
+                                                        <% _.each(value.param, function (value, key) { %>
+                                                            <li>
+                                                                <%= key %> {<%= value.type %>} 
+                                                                <% if (value.description) { %>
+                                                                    - <%= value.description %>
+                                                                <% } %>
+                                                            </li>
+                                                            <% if (value.type === 'object') { %>
+                                                                <ul>
+                                                                    <%_.each(value.property, function (value, key) { %>
+                                                                        <% var propertyArray = [];
+                                                                        if (value.isOptional) { 
+                                                                            propertyArray.push('[' + key + ']');
+                                                                        } else {
+                                                                            propertyArray.push(key);
+                                                                        } %>
+                                                                        <li>
+                                                                            <%= propertyArray.join(', ') %> {<%= value.type %>}
+                                                                            <% if (value.default) { %>
+                                                                                <span class="default-value"> default: <%= value.default %> </span>
+                                                                            <% } %>
+                                                                            <% if (value.description) { %>
+                                                                                - <%= value.description %>
+                                                                            <% } %>
+                                                                        </li>
+                                                                    <% }); %>
+                                                                </ul>
+                                                                <ul>
+                                                                    <% _.each(value.method, function (value, key) { %>
+                                                                        <li>
+                                                                            <%= key %> {<%= value.type %>} 
+                                                                            <% if (value.description) { %>
+                                                                                - <%= value.description %>
+                                                                            <% } %>
+                                                                        </li>
+                                                                    <% }); %>
+                                                                </ul>
+                                                            <% } %>
+                                                            <% if (value.type === 'function') { %>
+                                                                <h6>Params</h6>
+                                                                <ul>
+                                                                <% _.each(value.param, function (value, key) {
+                                                                    var paramsArray = [];
+                                                                    if (value.isOptional) { 
+                                                                        paramsArray.push('[' + key + ']');
+                                                                    } else {
+                                                                        paramsArray.push(key);
+                                                                    } %>
+                                                                    <li>
+                                                                        <%= key %> {<%= value.type %>} 
+                                                                        <% if (value.description) { %>
+                                                                            - <%= value.description %>
+                                                                        <% } %>
+                                                                    </li>
+                                                                <% }); %>
+                                                                </ul>
+                                                            <% } %>
+                                                        <% }); %>
+                                                    </ul>
+                                                <% } %>
+                                                <% if (value.return) { %>
+                                                    <h5>Return</h5>
+                                                    <ul>
+                                                        <% _.each(value.return, function (value, key) { %>
+                                                            <li>
+                                                                <%= key %> {<%= value.type %>} 
+                                                                <% if (value.description) { %>
+                                                                    - <%= value.description %>
+                                                                <% } %>
+                                                            </li>
+                                                        <% }); %>
+                                                    </ul>
+                                                <% } %>
+                                            </div>
+                                        <% }); %>
+                                    <% } %>
+                                    <!-- end doc -->
+
+
+                                </div>
+                            <% }); %>
+                        <% }); %>
+                        </div>
+                    <% } %>
+                    <!-- end child -->
+
+                </div>
+            </div>
+        <% }); %>
+    <% }); %>
+    <!-- end appular docs -->
+
+    <h2 id="type-documenting">documenting</h2>
+    <p>
+        Documentation of Appular modules can be added by:
+    </p>
+    <ol>
+        <li>
+            Adding inline commenting using the tags documented below
+        </li>
+        <li>
+            Using node to process comments and generate documentation
+        </li>
+    </ol>
+    <p>
+        There are two types of documentation blocks, one using the @appular tag to categorize the module, and a second using the @doc tag to document anything inside of a module.
+    </p>
+    <div class="module" id="module-tags">
+        <h3>Document Blocks</h3>
+        <div class="method">
+            <h4>@appular:2012-09-24 {type} name - description</h4>
+            <p>The @appular tag needs to appear at the top of any module that you want to document.  Avaliable tags to use in this block include:</p>
+            <ul>
+                <li>
+                    @define 
+                </li>
+                <li>
+                    @parent {parentType} parentName
+                </li>
+                <li>
+                    @link http://phoenix.jobing.com - description
+                </li>
+                <li>
+                    @extends backbone.view
+                </li>
+            </ul>
+            <h5>Example 1 - Defining and appular utility module named data</h5>
+            <pre>
+/**
+@appular {utility} data - designed to store variables for apps.
+    @extends backbone.collection
+    @define Data
+*/              
+            </pre>
+            <h5>Example 2 - Defining an appular library</h5>
+            <pre>
+/**
+@appular {library} jquery - jquery v 1.8.2
+    @define jQuery
+*/
+            </pre>
+            <h5>Example 3 - Defining a library plugin</h5>
+            <pre>
+/**
+@appular {plugin} autoGrow - auto-growing textareas
+    @parent {library} jquery
+    @link http://github.com/jaz303/jquery-grab-bag/tree/master/javascripts/jquery.autogrow-textarea.js - documentation
+*/           
+            </pre>
+            <h4>@doc:2012-09-24 {type} name - description</h4>
+            <p>The @doc tag can appear anywhere inside a module to document functions, properties, events and anything else.  Avaliable tags to use in this block include:</p>
+            <ul>
+                <li>
+                    @param {type} name=default - description
+                </li>
+                <li>
+                    @return {type} name - description
+                </li>
+                <li>
+                    @property {type} name - description
+                </li>
+                <li>
+                    @method {function} name - description
+                </li>
+            </ul>
+            <h5>Example 1 - Defining a function</h5>
+            <pre>
+/**
+@doc:2012-09-21 {function} initialize
+    @param {object} options
+    @property {array} options.[fields] - form fields
+    @method {function} options.[valid] - callback function for successful validation
+        @param {object} options.valid.event - jquery event object for form submit
+    @method {function} options.[error] - callback function for successful validation
+        @param {array} options.error.errors - an array of validation errors
+*/
+            </pre>
+            <h5>Example 2 - Defining a event</h5>
+            <pre>
+/**
+@doc {event} dataChanged - fires when any data is changed after initial load.
+    @param {string} id - the id of the data collection model that changed
+*/
+            </pre>
+        </div>
+    </div>
+
+</div>
