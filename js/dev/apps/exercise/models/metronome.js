@@ -19,9 +19,7 @@ define([
             taps: [],
             isMuted: false,
             timestamp: new Date().getTime(),
-            button: 'Start',
-            beep: $('#beep')[0],
-            click: $('#click')[0]
+            button: 'Start'
         },
         
         initialize: function(){
@@ -34,7 +32,52 @@ define([
                 'currentBeat': this.get('beats')
             });
 
+            // Try/Catch incase it doesn't exist (FF/IE)
+            try {
+                this.audioContext = new webkitAudioContext();
+                this.soundBuffers = {};
+                this.loadSound('beep', '/audio/beep.wav');
+                this.loadSound('click', '/audio/click.wav');
+            } catch(e) {
+                alert('Web Audio API is not supported in this browser');
+            }
 
+        },
+
+        onError: function () {
+
+        },
+
+        loadSound: function (name, url) {
+            var request = new XMLHttpRequest(),
+                self = this;
+
+            request.open('GET', url, true);
+
+            // Web Audio is binary (not text) - we need an arraybuffer
+            request.responseType = 'arraybuffer';
+
+            // Decode asynchronously
+            request.onload = function() {
+                self.audioContext.decodeAudioData(request.response, function (buffer) {
+                    self.soundBuffers[name] = buffer;
+                }, self.onError);
+            };
+
+            request.send();
+        },
+
+        playSound: function (name) {
+            if (this.audioContext) {
+                // creates a sound source
+                var soundSource = this.audioContext.createBufferSource();
+                // tell the source which sound to play
+                soundSource.buffer = this.soundBuffers[name];
+                // connect the source to the context's destination
+                soundSource.connect(this.audioContext.destination);
+                // play the source now
+                soundSource.noteOn(0);
+            }
         },
         
         toggleState: function() {
@@ -87,9 +130,9 @@ define([
 
                 if(!this.get('isMuted')) {
                     if(this.get('currentBeat') === 1 && this.get('beats') > 1) {
-                        this.get('beep').play();
+                        this.playSound('beep');
                     } else {
-                        this.get('click').play();
+                        this.playSound('click');
                     }
                 }
             } else {
