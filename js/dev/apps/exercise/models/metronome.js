@@ -36,8 +36,8 @@ define([
             try {
                 this.audioContext = new webkitAudioContext();
                 this.soundBuffers = {};
-                this.loadSound('beep', '/audio/beep.wav');
-                this.loadSound('click', '/audio/click.wav');
+                this.loadSound('beep', 'audio/beep.wav');
+                this.loadSound('click', 'audio/click.wav');
             } catch(e) {
                 alert('Web Audio API is not supported in this browser');
             }
