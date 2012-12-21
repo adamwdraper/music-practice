@@ -1,3 +1,5 @@
+
+
 // Transitions
 @mixin transition($transition) {
     -webkit-transition: $transition;
@@ -134,9 +136,12 @@ h2 {
         }
     }
 
+    .total-time {
+        border-radius: 0 .3em 0 0;
+    }
+
     .start-stop {
         cursor: pointer;
-        border-radius: 0 .3em 0 0;
         background: #49AFCD;
         color: white;
         @include transition(all .3s ease);
